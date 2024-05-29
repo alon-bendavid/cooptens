@@ -28,7 +28,7 @@ class UserResolver {
       existingUser.hashedPassword,
       data.password
     );
-    if (!passwordVerified) throw new GraphQLError("Invalid Credentials");
+    if (!passwordVerified) throw new GraphQLError("test");
 
     const token = jwt.sign(
       {
@@ -48,10 +48,10 @@ class UserResolver {
   }
 
   // @Authorized()
-  @Query(() => User)
-  async profile(@Ctx() ctx: Context) {
-    return ctx.currentUser;
-  }
+  // @Query(() => User)
+  // async profile(@Ctx() ctx: Context) {
+  //   return ctx.currentUser;
+  // }
 
   // @Query(() => [User])
   // async users(): Promise<User[]> {

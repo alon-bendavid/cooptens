@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { useSignupMutation } from "@/graphql/generated/schema";
+// import { useSignupMutation } from "@/graphql/generated/schema";
 import { FormEvent, useState } from "react";
 
 function validatePassword(p: string) {
@@ -18,7 +18,7 @@ function validatePassword(p: string) {
 
 export default function Signup() {
   const [error, setError] = useState("");
-  const [createUser] = useSignupMutation();
+  // const [createUser] = useSignupMutation();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setError("");
