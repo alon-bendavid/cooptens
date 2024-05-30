@@ -28,7 +28,7 @@ class UserResolver {
       existingUser.hashedPassword,
       data.password
     );
-    if (!passwordVerified) throw new GraphQLError("test");
+    if (!passwordVerified) throw new GraphQLError("Invalid Credentials");
 
     const token = jwt.sign(
       {

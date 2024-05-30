@@ -20,5 +20,6 @@ export const authChecker: AuthChecker<Context> = async ({ context }, roles) => {
   if (currentUser === null) return false;
 
   context.currentUser = currentUser;
+  
   return true;
 };

@@ -9,9 +9,17 @@ import {
 } from "typeorm";
 import { hash } from "argon2";
 
+export enum UserRole {
+  Admin = "admin",
+  Visitor = "visitor",
+}
+
 @Entity()
 @ObjectType()
 class User extends BaseEntity {
+  static findAll(): User[] | PromiseLike<User[]> {
+    throw new Error("Method not implemented.");
+  }
   password: string;
 
   @BeforeInsert()
@@ -40,6 +48,12 @@ class User extends BaseEntity {
   })
   @Field()
   avatar: string;
+  
+
+  @Field()
+  @Column({ enum: UserRole, default: UserRole.Visitor })
+  role: UserRole;
+  
 }
 
 @InputType()
@@ -59,6 +73,10 @@ export class NewUserInput {
   @Field()
   @IsStrongPassword()
   password: string;
+
+  @Field()
+  @IsStrongPassword()
+  role: UserRole;
 }
 
 @InputType()
