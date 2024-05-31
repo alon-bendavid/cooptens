@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import client from "@/graphql/client";
-import { useLoginMutation } from "@/graphql/generated/schema";
+import { useLoginMutation, useProfileQuery } from "@/graphql/generated/schema";
 import { FormEvent, useState } from "react";
 
 
@@ -22,11 +22,11 @@ function validatePassword(p: string) {
 export default function Login(){
   const [error, setError] = useState("");
   const [login]  = useLoginMutation();
-  // const { data: currentUser, client } = useProfileQuery({
-  //   errorPolicy: "ignore",
-  // });
+  const { data: currentUser, client } = useProfileQuery({
+    errorPolicy: "ignore",
+  });
 
-
+// console.log(currentUser?.profile.email);
   const handleSubmit = async(e: FormEvent<HTMLFormElement>)=>{
     setError("");
 
@@ -38,11 +38,13 @@ export default function Login(){
 //    const formJSON: any = Object.fromEntries(formData.entries());
 try {
     const res = await login({ variables: { data: formJSON } });
+    
     console.log({ res });
 } catch (err:any) {
   setError(err);  
   // setError("Identifiants incorrects");
   console.log(err);
+
 }finally{
     client.resetStore();
 }

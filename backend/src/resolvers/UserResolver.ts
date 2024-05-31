@@ -43,8 +43,9 @@ class UserResolver {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       secure: env.NODE_ENV === "production",
     });
-
+    // return token;
     return token;
+
   }
 
   // @Authorized()
@@ -53,16 +54,31 @@ class UserResolver {
   //   return ctx.currentUser;
   // }
 
-  // @Query(() => [User])
-  // async users(): Promise<User[]> {
-  //   return User.find();
-  // }
+  @Query(() => [User])
+  async users(): Promise<User[]> {
+    return User.find();
+  }
   // @Authorized()
-@Query(()=>[User])
-async users():Promise<User[]>{
-  return User.find();
+// @Query(()=>[User])
+// async users():Promise<User[]>{
+//   return User.find();
+// }
+
+@Authorized()
+@Query(()=> User)
+async profile(@Ctx() ctx: Context) {
+  if (!ctx.currentUser) throw new GraphQLError("you need to be logged in!");
+  return User.findOneOrFail({
+    where: { id: ctx.currentUser.id },
+    
+  });
 }
+
 
 }
 
 export default UserResolver;
+
+
+
+
