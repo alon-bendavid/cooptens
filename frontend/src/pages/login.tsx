@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import client from "@/graphql/client";
-import { useLoginMutation, useProfileQuery } from "@/graphql/generated/schema";
+import { useLoginMutation, useLogoutMutation, useProfileQuery } from "@/graphql/generated/schema";
 import { FormEvent, useState } from "react";
 
 
@@ -22,11 +22,11 @@ function validatePassword(p: string) {
 export default function Login(){
   const [error, setError] = useState("");
   const [login]  = useLoginMutation();
+  const [logout] = useLogoutMutation();
   const { data: currentUser, client } = useProfileQuery({
     errorPolicy: "ignore",
   });
 
-// console.log(currentUser?.profile.email);
   const handleSubmit = async(e: FormEvent<HTMLFormElement>)=>{
     setError("");
 
@@ -39,7 +39,7 @@ export default function Login(){
 try {
     const res = await login({ variables: { data: formJSON } });
     
-    console.log({ res });
+    console.log({ res }); 
 } catch (err:any) {
   setError(err);  
   // setError("Identifiants incorrects");
@@ -50,19 +50,65 @@ try {
 }
     console.log(formJSON);
   }
+  console.log(currentUser);
     return(
-<Layout pageTitle="Login page">
+      <Layout pageTitle="Se connecter">
+      {currentUser ? (
+        <div className="pt-4">
+          <p>connecté en tant que {currentUser.profile.email}</p>
+          <button
+            className="btn btn-warning text-white mt-4 w-full"
+            onClick={async () => {
+              await logout();
+              client.resetStore();
+            }}
+          >
+            Se déconnecter
+          </button>
+        </div>
+      ) : (
+        <>
+          <h1 className="pt-6 pb-6 text-2xl">Se connecter</h1>
 
-<div className="">
-    <h1>Welcome user!</h1>
-<form onSubmit={handleSubmit} className="bg-slate-200 p-3 flex flex-col gap-5 max-w-xs rounded-lg">
-<input type="email" name="email" placeholder="Your Email" />
-<input type="password" name="password" placeholder="Your password"/>
-<button  >Submit</button>
-{/* {error !== "" && <pre className="text-red-700">{error}</pre>} */}
-</form>
-</div>
-    
-</Layout>  
+          <form onSubmit={handleSubmit} className="pb-12">
+            <div className="flex flex-wrap gap-6 mb-3">
+              <div className="form-control w-full max-w-xs">
+                <label className="label" htmlFor="email">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  id="email"
+                  autoComplete=""
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </div>
+
+              <div className="form-control w-full max-w-xs">
+                <label className="label" htmlFor="password">
+                  <span className="label-text">Mot de passe</span>
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  required
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </div>
+            </div>
+
+            {error !== "" && <pre className="text-red-700">{error}</pre>}
+            <button className="btn btn-primary text-white mt-12 w-full">
+              Se connecter
+            </button>
+          </form>
+        </>
+      )}
+    </Layout>
+
     );
 }
+

@@ -35,7 +35,7 @@ export default function Header() {
      <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-xl ">
 
         {/* <nav className="flex items-center justify-between p-6 lg:px-8 " aria-label="Global"> */}
-        <nav className="flex items-center justify-between p-6 lg:px-8 bg-slate-500" aria-label="Global">
+        <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
 
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
@@ -59,7 +59,7 @@ export default function Header() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12  bg-red-600 mx-3">
+          <div className="hidden lg:flex lg:gap-x-12  mx-3">
             {navigation.map((item) => (
               <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
                 {item.name}

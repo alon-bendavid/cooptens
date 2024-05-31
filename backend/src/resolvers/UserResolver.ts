@@ -1,5 +1,5 @@
 import { Arg, Authorized, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import User, { LoginInput, NewUserInput } from "../entities/User";
+import User, { LoginInput, NewUserInput, UserRole } from "../entities/User";
 import { GraphQLError } from "graphql";
 import { verify } from "argon2";
 import jwt from "jsonwebtoken";
@@ -53,7 +53,7 @@ class UserResolver {
   // async profile(@Ctx() ctx: Context) {
   //   return ctx.currentUser;
   // }
-
+  @Authorized([UserRole.Admin])
   @Query(() => [User])
   async users(): Promise<User[]> {
     return User.find();
@@ -72,8 +72,20 @@ async profile(@Ctx() ctx: Context) {
     where: { id: ctx.currentUser.id },
     
   });
-}
 
+  
+}
+// @Mutation(() => String)
+// async logout(@Ctx() ctx: Context) {
+//   ctx.res.clearCookie("token");
+//   return "ok";
+// }
+
+@Mutation(()=>String)
+async logout(@Ctx() ctx: Context){
+  ctx.res.clearCookie("token");
+  return "ok";
+}
 
 }
 
