@@ -4,9 +4,6 @@ query Job {
     active
     jobTitle
     jobDescription
-    profil
-    jobType
-    localisation
-    salaire
+    location
   }
 }

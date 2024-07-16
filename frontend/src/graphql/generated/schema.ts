@@ -21,10 +21,7 @@ export type Job = {
   id: Scalars['Float'];
   jobDescription: Scalars['String'];
   jobTitle: Scalars['String'];
-  jobType: Scalars['String'];
-  localisation: Scalars['String'];
-  profil: Scalars['String'];
-  salaire: Scalars['String'];
+  location: Scalars['String'];
 };
 
 export type LoginInput = {
@@ -56,13 +53,9 @@ export type MutationLoginArgs = {
 };
 
 export type NewJobInput = {
-  active: Scalars['Boolean'];
   jobDescription: Scalars['String'];
   jobTitle: Scalars['String'];
-  jobType: Scalars['String'];
-  localisation: Scalars['String'];
-  profil: Scalars['String'];
-  salaire: Scalars['String'];
+  location: Scalars['String'];
 };
 
 export type NewUserInput = {
@@ -89,10 +82,17 @@ export type User = {
   role: Scalars['String'];
 };
 
+export type CreateJobMutationVariables = Exact<{
+  data: NewJobInput;
+}>;
+
+
+export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'Job', id: number, jobTitle: string, jobDescription: string, location: string } };
+
 export type JobQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type JobQuery = { __typename?: 'Query', Job: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, profil: string, jobType: string, localisation: string, salaire: string }> };
+export type JobQuery = { __typename?: 'Query', Job: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, location: string }> };
 
 export type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -117,6 +117,42 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 export type LogoutMutation = { __typename?: 'Mutation', logout: string };
 
 
+export const CreateJobDocument = gql`
+    mutation CreateJob($data: NewJobInput!) {
+  createJob(data: $data) {
+    id
+    jobTitle
+    jobDescription
+    location
+  }
+}
+    `;
+export type CreateJobMutationFn = Apollo.MutationFunction<CreateJobMutation, CreateJobMutationVariables>;
+
+/**
+ * __useCreateJobMutation__
+ *
+ * To run a mutation, you first call `useCreateJobMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateJobMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createJobMutation, { data, loading, error }] = useCreateJobMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateJobMutation(baseOptions?: Apollo.MutationHookOptions<CreateJobMutation, CreateJobMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateJobMutation, CreateJobMutationVariables>(CreateJobDocument, options);
+      }
+export type CreateJobMutationHookResult = ReturnType<typeof useCreateJobMutation>;
+export type CreateJobMutationResult = Apollo.MutationResult<CreateJobMutation>;
+export type CreateJobMutationOptions = Apollo.BaseMutationOptions<CreateJobMutation, CreateJobMutationVariables>;
 export const JobDocument = gql`
     query Job {
   Job {
@@ -124,10 +160,7 @@ export const JobDocument = gql`
     active
     jobTitle
     jobDescription
-    profil
-    jobType
-    localisation
-    salaire
+    location
   }
 }
     `;

@@ -1,5 +1,4 @@
 
-  import AdminLayout from "@/components/admin/AdminLayout";
 import { useJobQuery} from "@/graphql/generated/schema";
 
 
@@ -21,11 +20,11 @@ export default function AdminUsers(){
                 <div key={job.id}>
 
                     <div>{job.jobTitle}</div>
-                    <div>{job.profil}</div>
+                    
 
                     <div>{job.jobDescription}</div>
-                    <div>{job.jobType}</div>
-                    <div>{job.salaire}</div>
+                    
+                    
                 </div>
 
                )

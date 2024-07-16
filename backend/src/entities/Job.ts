@@ -41,8 +41,7 @@ location: string;
 
 @InputType()
 export class NewJobInput {
-  @Field()
-  active: boolean;
+
 
   @Field()
   jobTitle: string;

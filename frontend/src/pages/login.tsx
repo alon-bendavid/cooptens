@@ -55,10 +55,10 @@ try {
       <Layout pageTitle="Se connecter">
         <div>
           <p>
-        4dminAdmin@!  
+          admin@app.com  
           </p>
           <p>
-        Visitor42@!
+          4dminAdmin@!
           </p>
         </div>
       {currentUser ? (
