@@ -75,7 +75,7 @@ export class NewUserInput {
   password: string;
 
   @Field()
-  @IsStrongPassword()
+  // @IsStrongPassword()//commanted in 06/05/2024 
   role: UserRole;
 }
 

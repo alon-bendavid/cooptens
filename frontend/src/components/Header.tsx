@@ -6,7 +6,7 @@ import qs from "query-string";
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '../assets/logoSVG-01.svg'
-
+import { useLoginMutation, useLogoutMutation, useProfileQuery } from "@/graphql/generated/schema";
 
 
 // import { useCategoriesQuery } from "@/graphql/generated/schema";
@@ -17,17 +17,17 @@ const navigation = [
   { name: 'ACCUEIL', href: '/' },
   { name: 'NOTRE EXPERTISE', href: '/about' },
   { name: 'CANDIDANTS', href: '/candidants' },
-  { name: 'OPPORTUNITÉS', href: '/jobs' },
+  { name: 'OPPORTUNITÉS', href: '/opportunities' },
   { name: 'CONTACT', href: '/contact' },
-  { name: 'FORM-DESCRIPTION', href: '/form-description' },
-  { name: 'ADMIN', href: '/admin' },
-
-
-
+  { name: 'ADMIN PANEL', href: '/admin' },
 ]
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [logout] = useLogoutMutation();
+  const { data: currentUser, client } = useProfileQuery({
+    errorPolicy: "ignore",
+  });
 
     return (
       <> 
@@ -40,12 +40,15 @@ export default function Header() {
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
+              <Link href={'/'}>
+              
           <Image
           priority={true}
          src={Logo}
          className="w-28 max-w-lg"
           alt="logo"
         />
+              </Link>
 
             </a>
           </div>
@@ -61,15 +64,42 @@ export default function Header() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12  mx-3">
             {navigation.map((item) => (
-              <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                {item.name}
-              </Link>
+              <>
+                {
+   
+                item.name === 'ADMIN' && currentUser?.profile.role !== 'admin'? null :(
+                  <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+                  {item.name}
+                </Link>
+                  )
+
+                }
+      
+  
+              </>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
+            { currentUser? ( 
+              <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
+                        <button
+                        className="btn btn-primary text-white mt-4 w-full"
+                        onClick={async () => {
+                          await logout();
+                          client.resetStore();
+                        }}
+                      >
+                        Se déconnecter
+                      </button>
+       
             </Link>
+
+          ):(
+            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
+            Log in <span aria-hidden="true">&rarr;</span>
+          </Link>
+            )}
+
           </div>
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -122,3 +152,9 @@ export default function Header() {
       </>
     );
   }
+
+
+
+
+
+  

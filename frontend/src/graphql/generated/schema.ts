@@ -15,6 +15,18 @@ export type Scalars = {
   Float: number;
 };
 
+export type Job = {
+  __typename?: 'Job';
+  active: Scalars['Boolean'];
+  id: Scalars['Float'];
+  jobDescription: Scalars['String'];
+  jobTitle: Scalars['String'];
+  jobType: Scalars['String'];
+  localisation: Scalars['String'];
+  profil: Scalars['String'];
+  salaire: Scalars['String'];
+};
+
 export type LoginInput = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -22,9 +34,15 @@ export type LoginInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createJob: Job;
   createUser: User;
   login: Scalars['String'];
   logout: Scalars['String'];
+};
+
+
+export type MutationCreateJobArgs = {
+  data: NewJobInput;
 };
 
 
@@ -37,6 +55,16 @@ export type MutationLoginArgs = {
   data: LoginInput;
 };
 
+export type NewJobInput = {
+  active: Scalars['Boolean'];
+  jobDescription: Scalars['String'];
+  jobTitle: Scalars['String'];
+  jobType: Scalars['String'];
+  localisation: Scalars['String'];
+  profil: Scalars['String'];
+  salaire: Scalars['String'];
+};
+
 export type NewUserInput = {
   avatar?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
@@ -47,6 +75,7 @@ export type NewUserInput = {
 
 export type Query = {
   __typename?: 'Query';
+  Job: Array<Job>;
   profile: User;
   users: Array<User>;
 };
@@ -59,6 +88,11 @@ export type User = {
   nickname: Scalars['String'];
   role: Scalars['String'];
 };
+
+export type JobQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type JobQuery = { __typename?: 'Query', Job: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, profil: string, jobType: string, localisation: string, salaire: string }> };
 
 export type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -83,6 +117,47 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 export type LogoutMutation = { __typename?: 'Mutation', logout: string };
 
 
+export const JobDocument = gql`
+    query Job {
+  Job {
+    id
+    active
+    jobTitle
+    jobDescription
+    profil
+    jobType
+    localisation
+    salaire
+  }
+}
+    `;
+
+/**
+ * __useJobQuery__
+ *
+ * To run a query within a React component, call `useJobQuery` and pass it any options that fit your needs.
+ * When your component renders, `useJobQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useJobQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useJobQuery(baseOptions?: Apollo.QueryHookOptions<JobQuery, JobQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<JobQuery, JobQueryVariables>(JobDocument, options);
+      }
+export function useJobLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<JobQuery, JobQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<JobQuery, JobQueryVariables>(JobDocument, options);
+        }
+export type JobQueryHookResult = ReturnType<typeof useJobQuery>;
+export type JobLazyQueryHookResult = ReturnType<typeof useJobLazyQuery>;
+export type JobQueryResult = Apollo.QueryResult<JobQuery, JobQueryVariables>;
 export const ProfileDocument = gql`
     query Profile {
   profile {

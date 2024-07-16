@@ -1,0 +1,12 @@
+query Job {
+  Job {
+    id
+    active
+    jobTitle
+    jobDescription
+    profil
+    jobType
+    localisation
+    salaire
+  }
+}

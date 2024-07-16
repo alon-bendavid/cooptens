@@ -1,4 +1,5 @@
 import db from "./db";
+import Job from "./entities/Job";
 // import Ad from "./entities/Ad";
 // import Category from "./entities/Category";
 // import Tag from "./entities/Tag";
@@ -42,6 +43,16 @@ async function main() {
   });
   await user.save();
 
+
+
+
+  const job = new Job();
+  Object.assign(job, {
+    jobDescription: "its the best job ever!",
+    jobTitle: "DÉVELOPPEUR FONCIER H/F",
+    location: "Paris",
+  });
+  await job.save();
   // const macbook = Ad.create({
   //   title: "Macbook pro",
   //   description:

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Details from "./details";
+import Details from "./Details";
 // import { Job01, Job02 } from "./job-data";
 
 type Job = {

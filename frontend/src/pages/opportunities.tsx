@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Box from "@/components/box";
+import Box from "@/components/Box";
 import Layout from "@/components/Layout";
 
 // import JobsData from "../componenets/jobs";
@@ -60,6 +60,11 @@ jobC: {
             <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {/* <Box location="Marseille"  title={"CHEF DE PROJET AMO H/F – CONDUITE D’OPÉRATIONS |PROPS$$|"} jobDescription={<Job01 />} color={colors.blue}/> */}
                
+                <Box location={data.jobB.location} title={data.jobB.location} jobDescription={data.jobB.location} color={colors[Math.floor(Math.random() * colors.length)]} />
+                <Box location={data.jobB.location} title={data.jobB.location} jobDescription={data.jobB.location} color={colors[Math.floor(Math.random() * colors.length)]} />
+                <Box location={data.jobB.location} title={data.jobB.location} jobDescription={data.jobB.location} color={colors[Math.floor(Math.random() * colors.length)]} />
+                <Box location={data.jobB.location} title={data.jobB.location} jobDescription={data.jobB.location} color={colors[Math.floor(Math.random() * colors.length)]} />
+                <Box location={data.jobB.location} title={data.jobB.location} jobDescription={data.jobB.location} color={colors[Math.floor(Math.random() * colors.length)]} />
                 <Box location={data.jobB.location} title={data.jobB.location} jobDescription={data.jobB.location} color={colors[Math.floor(Math.random() * colors.length)]} />
               
               

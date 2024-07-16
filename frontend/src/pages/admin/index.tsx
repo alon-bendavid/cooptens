@@ -8,7 +8,7 @@ export default function AdminDashboard() {
       <p>Statistiques bientot disponibles ici...</p>
       <Link href="/admin/users" className="button logo link-button">
             <span className="mobile-short-label">TGC</span>
-            <span className="desktop-long-label text-xl">THE GOOD CORNER</span>
+            <span className="desktop-long-label text-xl">COOPTENS DASHBOARD!</span>
           </Link>
     </AdminLayout>
   );

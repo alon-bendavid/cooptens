@@ -53,11 +53,19 @@ try {
   console.log(currentUser);
     return(
       <Layout pageTitle="Se connecter">
+        <div>
+          <p>
+        4dminAdmin@!  
+          </p>
+          <p>
+        Visitor42@!
+          </p>
+        </div>
       {currentUser ? (
         <div className="pt-4">
           <p>connecté en tant que {currentUser.profile.email}</p>
           <button
-            className="btn btn-warning text-white mt-4 w-full"
+            className="btn btn-primary text-white mt-4 w-full"
             onClick={async () => {
               await logout();
               client.resetStore();
@@ -85,11 +93,12 @@ try {
                   className="input input-bordered w-full max-w-xs"
                 />
               </div>
-
+  
               <div className="form-control w-full max-w-xs">
                 <label className="label" htmlFor="password">
                   <span className="label-text">Mot de passe</span>
                 </label>
+       
                 <input
                   type="password"
                   name="password"
