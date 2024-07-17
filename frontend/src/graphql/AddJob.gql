@@ -4,5 +4,6 @@ mutation CreateJob($data: NewJobInput!) {
     jobTitle
     jobDescription
     location
+    active
   }
 }

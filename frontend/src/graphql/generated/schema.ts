@@ -53,6 +53,7 @@ export type MutationLoginArgs = {
 };
 
 export type NewJobInput = {
+  active: Scalars['Boolean'];
   jobDescription: Scalars['String'];
   jobTitle: Scalars['String'];
   location: Scalars['String'];
@@ -87,7 +88,7 @@ export type CreateJobMutationVariables = Exact<{
 }>;
 
 
-export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'Job', id: number, jobTitle: string, jobDescription: string, location: string } };
+export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'Job', id: number, jobTitle: string, jobDescription: string, location: string, active: boolean } };
 
 export type JobQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -124,6 +125,7 @@ export const CreateJobDocument = gql`
     jobTitle
     jobDescription
     location
+    active
   }
 }
     `;

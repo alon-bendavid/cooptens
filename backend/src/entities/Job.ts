@@ -52,7 +52,8 @@ export class NewJobInput {
 @Field()
 location: string;
 
-
+@Field()
+active: boolean;
 
 }
 
