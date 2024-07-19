@@ -4,6 +4,10 @@ query Job {
     active
     jobTitle
     jobDescription
+    mission
+    profil
+    salery
+    jobType
     location
   }
 }

@@ -21,7 +21,6 @@ class Job extends BaseEntity {
   @Column({default: true})
   active: boolean;
 
-
   @Field()
   @Column()
   jobTitle: string;
@@ -29,6 +28,22 @@ class Job extends BaseEntity {
   @Field()
   @Column()
   jobDescription: string;
+
+  @Field()
+  @Column()
+  mission: string;
+  
+  @Field()
+  @Column()
+  profil: string;
+
+  @Field()
+  @Column()
+  salery:string;
+
+  @Field()
+  @Column()
+  jobType:string;
 
 @Field()
 @Column()
@@ -49,11 +64,23 @@ export class NewJobInput {
   @Field()
   jobDescription: string;
 
-@Field()
-location: string;
+  @Field()
+  location: string;
 
-@Field()
-active: boolean;
+  @Field()
+  active: boolean;
+
+  @Field()
+  mission: string;
+  
+  @Field()
+  profil: string;
+
+  @Field()
+  salery:string;
+
+  @Field()
+  jobType:string;
 
 }
 

@@ -21,7 +21,11 @@ export type Job = {
   id: Scalars['Float'];
   jobDescription: Scalars['String'];
   jobTitle: Scalars['String'];
+  jobType: Scalars['String'];
   location: Scalars['String'];
+  mission: Scalars['String'];
+  profil: Scalars['String'];
+  salery: Scalars['String'];
 };
 
 export type LoginInput = {
@@ -56,7 +60,11 @@ export type NewJobInput = {
   active: Scalars['Boolean'];
   jobDescription: Scalars['String'];
   jobTitle: Scalars['String'];
+  jobType: Scalars['String'];
   location: Scalars['String'];
+  mission: Scalars['String'];
+  profil: Scalars['String'];
+  salery: Scalars['String'];
 };
 
 export type NewUserInput = {
@@ -88,12 +96,12 @@ export type CreateJobMutationVariables = Exact<{
 }>;
 
 
-export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'Job', id: number, jobTitle: string, jobDescription: string, location: string, active: boolean } };
+export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, mission: string, profil: string, salery: string, jobType: string, location: string } };
 
 export type JobQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type JobQuery = { __typename?: 'Query', Job: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, location: string }> };
+export type JobQuery = { __typename?: 'Query', Job: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, mission: string, profil: string, salery: string, jobType: string, location: string }> };
 
 export type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -122,10 +130,14 @@ export const CreateJobDocument = gql`
     mutation CreateJob($data: NewJobInput!) {
   createJob(data: $data) {
     id
+    active
     jobTitle
     jobDescription
+    mission
+    profil
+    salery
+    jobType
     location
-    active
   }
 }
     `;
@@ -162,6 +174,10 @@ export const JobDocument = gql`
     active
     jobTitle
     jobDescription
+    mission
+    profil
+    salery
+    jobType
     location
   }
 }

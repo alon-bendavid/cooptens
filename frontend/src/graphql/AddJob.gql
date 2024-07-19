@@ -1,9 +1,13 @@
 mutation CreateJob($data: NewJobInput!) {
   createJob(data: $data) {
     id
+    active
     jobTitle
     jobDescription
+    mission
+    profil
+    salery
+    jobType
     location
-    active
   }
 }
