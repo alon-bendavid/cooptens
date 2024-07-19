@@ -7,24 +7,21 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 
-
-
 @Entity()
 @ObjectType()
 class Job extends BaseEntity {
-
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
-  @Column({default: true})
+  @Column({ default: true })
   active: boolean;
 
   @Field()
   @Column()
   jobTitle: string;
-  
+
   @Field()
   @Column()
   jobDescription: string;
@@ -32,35 +29,29 @@ class Job extends BaseEntity {
   @Field()
   @Column()
   mission: string;
-  
+
   @Field()
   @Column()
   profil: string;
 
   @Field()
   @Column()
-  salery:string;
+  salary: string;
 
   @Field()
   @Column()
-  jobType:string;
+  jobType: string;
 
-@Field()
-@Column()
-location: string;
-
-
+  @Field()
+  @Column()
+  location: string;
 }
-
-
 
 @InputType()
 export class NewJobInput {
-
-
   @Field()
   jobTitle: string;
-  
+
   @Field()
   jobDescription: string;
 
@@ -72,33 +63,15 @@ export class NewJobInput {
 
   @Field()
   mission: string;
-  
+
   @Field()
   profil: string;
 
   @Field()
-  salery:string;
+  salary: string;
 
   @Field()
-  jobType:string;
-
+  jobType: string;
 }
 
-
-
-
 export default Job;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

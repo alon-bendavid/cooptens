@@ -1,55 +1,56 @@
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import qs from "query-string";
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Logo from '../assets/logoSVG-01.svg'
-import { useLoginMutation, useLogoutMutation, useProfileQuery } from "@/graphql/generated/schema";
-
+import { Dialog } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Logo from "../assets/logoSVG-01.svg";
+import {
+  useLoginMutation,
+  useLogoutMutation,
+  useProfileQuery,
+} from "@/graphql/generated/schema";
 
 // import { useCategoriesQuery } from "@/graphql/generated/schema";
 // const router = useRouter();
 
-
 const navigation = [
-  { name: 'ACCUEIL', href: '/' },
-  { name: 'NOTRE EXPERTISE', href: '/about' },
-  { name: 'CANDIDANTS', href: '/candidants' },
-  { name: 'OPPORTUNITÉS', href: '/opportunities' },
-  { name: 'CONTACT', href: '/contact' },
-  { name: 'ADMIN PANEL', href: '/admin' },
-]
+  { name: "ACCUEIL", href: "/" },
+  { name: "NOTRE EXPERTISE", href: "/about" },
+  { name: "CANDIDANTS", href: "/candidants" },
+  { name: "OPPORTUNITÉS", href: "/opportunities" },
+  { name: "CONTACT", href: "/contact" },
+  { name: "ADMIN PANEL", href: "/admin" },
+];
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logout] = useLogoutMutation();
   const { data: currentUser, client } = useProfileQuery({
     errorPolicy: "ignore",
   });
 
-    return (
-      <> 
-     {/* <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-xl "> */}
-     <header className="sticky inset-x-0 top-0 z-50 backdrop-blur-xl ">
-
+  return (
+    <>
+      {/* <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-xl "> */}
+      <header className="sticky inset-x-0 top-0 z-50 backdrop-blur-xl ">
         {/* <nav className="flex items-center justify-between p-6 lg:px-8 " aria-label="Global"> */}
-        <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-
+        <nav
+          className="flex items-center justify-between p-6 lg:px-8"
+          aria-label="Global"
+        >
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <Link href={'/'}>
-              
-          <Image
-          priority={true}
-         src={Logo}
-         className="w-28 max-w-lg"
-          alt="logo"
-        />
+              <Link href={"/"}>
+                <Image
+                  priority={true}
+                  src={Logo}
+                  className="w-28 max-w-lg"
+                  alt="logo"
+                />
               </Link>
-
             </a>
           </div>
           <div className="flex lg:hidden ">
@@ -65,58 +66,64 @@ export default function Header() {
           <div className="hidden lg:flex lg:gap-x-12  mx-3">
             {navigation.map((item) => (
               <>
-                {
-   
-                item.name === 'ADMIN' && currentUser?.profile.role !== 'admin'? null :(
-                  <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                  {item.name}
-                </Link>
-                  )
-
-                }
-      
-  
+                {item.name === "ADMIN PANEL" &&
+                currentUser?.profile.role !== "admin" ? null : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            { currentUser? ( 
-              <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
-                        <button
-                        className="btn btn-primary text-white mt-4 w-full"
-                        onClick={async () => {
-                          await logout();
-                          client.resetStore();
-                        }}
-                      >
-                        Se déconnecter
-                      </button>
-       
-            </Link>
-
-          ):(
-            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+            {currentUser ? (
+              <Link
+                href="/login"
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                <button
+                  className="btn bg-blue-950  text-white mt-4 w-full"
+                  onClick={async () => {
+                    await logout();
+                    client.resetStore();
+                  }}
+                >
+                  Se déconnecter
+                </button>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Log in <span aria-hidden="true">&rarr;</span>
+              </Link>
             )}
-
           </div>
         </nav>
-        <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <Dialog
+          as="div"
+          className="lg:hidden"
+          open={mobileMenuOpen}
+          onClose={setMobileMenuOpen}
+        >
           <div className="fixed inset-0 z-50" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <Link href={'/'}>
-              
-              <Image
-              priority={true}
-             src={Logo}
-             className="w-28 max-w-lg"
-              alt="logo"
-            />
-                  </Link>
+                <Link href={"/"}>
+                  <Image
+                    priority={true}
+                    src={Logo}
+                    className="w-28 max-w-lg"
+                    alt="logo"
+                  />
+                </Link>
               </a>
               <button
                 type="button"
@@ -153,12 +160,6 @@ export default function Header() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      </>
-    );
-  }
-
-
-
-
-
-  
+    </>
+  );
+}

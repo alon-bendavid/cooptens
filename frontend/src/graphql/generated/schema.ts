@@ -25,7 +25,7 @@ export type Job = {
   location: Scalars['String'];
   mission: Scalars['String'];
   profil: Scalars['String'];
-  salery: Scalars['String'];
+  salary: Scalars['String'];
 };
 
 export type LoginInput = {
@@ -64,7 +64,7 @@ export type NewJobInput = {
   location: Scalars['String'];
   mission: Scalars['String'];
   profil: Scalars['String'];
-  salery: Scalars['String'];
+  salary: Scalars['String'];
 };
 
 export type NewUserInput = {
@@ -96,12 +96,12 @@ export type CreateJobMutationVariables = Exact<{
 }>;
 
 
-export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, mission: string, profil: string, salery: string, jobType: string, location: string } };
+export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, mission: string, profil: string, salary: string, jobType: string, location: string } };
 
 export type JobQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type JobQuery = { __typename?: 'Query', Job: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, mission: string, profil: string, salery: string, jobType: string, location: string }> };
+export type JobQuery = { __typename?: 'Query', Job: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, mission: string, profil: string, salary: string, jobType: string, location: string }> };
 
 export type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -135,7 +135,7 @@ export const CreateJobDocument = gql`
     jobDescription
     mission
     profil
-    salery
+    salary
     jobType
     location
   }
@@ -176,7 +176,7 @@ export const JobDocument = gql`
     jobDescription
     mission
     profil
-    salery
+    salary
     jobType
     location
   }

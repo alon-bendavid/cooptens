@@ -1,4 +1,12 @@
-import { Arg, Authorized, Ctx, ID, Mutation, Query, Resolver } from "type-graphql";
+import {
+  Arg,
+  Authorized,
+  Ctx,
+  ID,
+  Mutation,
+  Query,
+  Resolver,
+} from "type-graphql";
 import Job, { NewJobInput } from "../entities/Job";
 import { GraphQLError } from "graphql";
 import { verify } from "argon2";
@@ -6,7 +14,6 @@ import jwt from "jsonwebtoken";
 import env from "../env";
 import { Context } from "../types";
 import User, { UserRole } from "../entities/User";
-
 
 @Resolver()
 class JobResolver {
@@ -21,16 +28,11 @@ class JobResolver {
     const newJobWithId = await newJob.save();
     return newJobWithId;
   }
-  @Authorized([UserRole.Admin])
+  // @Authorized([UserRole.Admin])
   @Query(() => [Job])
   async Job(): Promise<Job[]> {
     return Job.find();
   }
-
 }
 
 export default JobResolver;
-
-
-
-

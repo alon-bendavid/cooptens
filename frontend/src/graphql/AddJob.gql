@@ -6,7 +6,7 @@ mutation CreateJob($data: NewJobInput!) {
     jobDescription
     mission
     profil
-    salery
+    salary
     jobType
     location
   }
