@@ -77,6 +77,7 @@ export type NewUserInput = {
 
 export type Query = {
   __typename?: 'Query';
+  ActiveJobs: Array<Job>;
   Job: Array<Job>;
   profile: User;
   users: Array<User>;
@@ -90,6 +91,11 @@ export type User = {
   nickname: Scalars['String'];
   role: Scalars['String'];
 };
+
+export type ActiveJobsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ActiveJobsQuery = { __typename?: 'Query', ActiveJobs: Array<{ __typename?: 'Job', id: number, active: boolean, jobTitle: string, jobDescription: string, mission: string, profil: string, salary: string, jobType: string, location: string }> };
 
 export type CreateJobMutationVariables = Exact<{
   data: NewJobInput;
@@ -126,6 +132,48 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 export type LogoutMutation = { __typename?: 'Mutation', logout: string };
 
 
+export const ActiveJobsDocument = gql`
+    query ActiveJobs {
+  ActiveJobs {
+    id
+    active
+    jobTitle
+    jobDescription
+    mission
+    profil
+    salary
+    jobType
+    location
+  }
+}
+    `;
+
+/**
+ * __useActiveJobsQuery__
+ *
+ * To run a query within a React component, call `useActiveJobsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useActiveJobsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useActiveJobsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useActiveJobsQuery(baseOptions?: Apollo.QueryHookOptions<ActiveJobsQuery, ActiveJobsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ActiveJobsQuery, ActiveJobsQueryVariables>(ActiveJobsDocument, options);
+      }
+export function useActiveJobsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ActiveJobsQuery, ActiveJobsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ActiveJobsQuery, ActiveJobsQueryVariables>(ActiveJobsDocument, options);
+        }
+export type ActiveJobsQueryHookResult = ReturnType<typeof useActiveJobsQuery>;
+export type ActiveJobsLazyQueryHookResult = ReturnType<typeof useActiveJobsLazyQuery>;
+export type ActiveJobsQueryResult = Apollo.QueryResult<ActiveJobsQuery, ActiveJobsQueryVariables>;
 export const CreateJobDocument = gql`
     mutation CreateJob($data: NewJobInput!) {
   createJob(data: $data) {

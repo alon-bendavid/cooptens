@@ -1,10 +1,18 @@
 export type Job = {
-  title:any,
-  jobDescription:any,
-  color:string,
-  location:string,
-  
-}
+  // title:any,
+  // jobDescription:any,
+  color: string;
+  // location:string,
+  jobTitle: string;
+  jobDescription: string;
+  location: string;
+  active: boolean;
+  mission: string;
+  profil: string;
+  salary: string;
+  jobType: string;
+  onClose: any;
+};
 // export type Ad = {
 //   id: number;
 //   title: string;

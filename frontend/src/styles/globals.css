@@ -23,7 +23,19 @@ h1 {
   font-size: large;
   font-weight: bold;
 }
-
+h2 {
+  margin: 0;
+  font-size: medium;
+  font-weight: bold;
+}
+p {
+  margin: 0;
+  font-size: medium;
+}
+strong {
+  margin: 0;
+  font-size: small;
+}
 .controls {
   display: flex;
   border: 1px solid #ccc;

@@ -12,10 +12,10 @@ export default function Layout({
   return (
     <>
       <Head>
-        <title>surf report - {pageTitle}</title>
+        <title>Cooptens | {pageTitle}</title>
         <meta name="description" content="ads website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
       <main className="main-content ">{children}</main>

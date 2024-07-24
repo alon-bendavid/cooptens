@@ -28,10 +28,19 @@ class JobResolver {
     const newJobWithId = await newJob.save();
     return newJobWithId;
   }
-  // @Authorized([UserRole.Admin])
+  @Authorized([UserRole.Admin])
   @Query(() => [Job])
   async Job(): Promise<Job[]> {
     return Job.find();
+  }
+
+  @Query(() => [Job])
+  async ActiveJobs(): Promise<Job[]> {
+    return Job.find({
+      where: {
+        active: true,
+      },
+    });
   }
 }
 
