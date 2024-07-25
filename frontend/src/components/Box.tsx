@@ -3,8 +3,8 @@ import Details from "./Details";
 import { Job } from "@/types";
 import Logo from "../../public/favicon.png";
 import Image from "next/image";
+import router from "next/router";
 
-<Details />;
 // jobTitle: string;
 // jobDescription: string;
 // location: string;
@@ -29,12 +29,13 @@ export default function Box({
   // Function to toggle details view
   const toggleDetails = () => {
     setShowDetails(!showDetails);
+    router.push("#jump");
   };
   return (
     <>
       <div
         onClick={toggleDetails}
-        className=" cursor-pointer relative group overflow-hidden p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900"
+        className=" cursor-pointer relative group overflow-hidden p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900 animate-fade-right animate-once animate-duration-[2000ms] animate-ease-out"
       >
         {/* <div aria-hidden="true" className="inset-0 absolute aspect-video border rounded-full -translate-y-1/2 group-hover:-translate-y-1/4 duration-300 bg-gradient-to-b from-blue-500 to-white dark:from-white dark:to-white blur-2xl opacity-25 dark:opacity-5 dark:group-hover:opacity-10"></div> */}
         <div
@@ -44,7 +45,7 @@ export default function Box({
 
         <div className="relative">
           <div className="mt-6 pb-6 rounded-b-[--card-border-radius]">
-            <p className="text-gray-700 dark:text-gray-300">{jobTitle}</p>
+            <h2 className="text-gray-700 dark:text-gray-300">{jobTitle}</h2>
           </div>
         </div>
 

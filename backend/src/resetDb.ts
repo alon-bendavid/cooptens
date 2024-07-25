@@ -91,5 +91,77 @@ Vous vous reconnaissez à travers cette opportunité et souhaitez relever un nou
     jobType: "CDI",
   });
   await job01.save();
+
+  const job02 = new Job();
+  Object.assign(job02, {
+    jobDescription: `Vous interviendrez sur les aspects administratifs, techniques et financiers des projets, tout en respectant une bonne gestion de projet et en prenant en compte la qualité, les coûts et les délais. Les opérations portent sur divers secteurs (santé, enseignement, administrations pénitentiaires, équipements sportifs, logements). 
+
+Rattaché(e) au Directeur d’agence, vos missions seront les suivantes :
+
+– Définition du besoin, étude de faisabilité,
+– Programmation fonctionnelle et technique,
+– Conduite d’opération/AMO/AMOT : 
+
+Organisation concours, conception/réalisation, MGP
+Suivi des études (APS, APD, PRO)
+Désignation et suivi des prestataires intellectuels,
+Suivi des travaux,
+Gestion financière du projet,
+Assistance à la phase de réception,
+Suivi de la GPA.`,
+    jobTitle: "CHEF DE PROJET AMO H/F – CONDUITE D’OPÉRATIONS",
+    location: "MARSEILLE",
+    active: true,
+    mission: `Organisation concours, conception/réalisation, MGP
+Suivi des études (APS, APD, PRO)
+Désignation et suivi des prestataires intellectuels,
+Suivi des travaux,
+Gestion financière du projet,
+Assistance à la phase de réception,
+Suivi de la GPA. `,
+    profil: `Ingénieur(e) bâtiment et/ou architecte diplômé(e), master en bâtiment, génie civil ou urbanisme avec une expérience minimale de 8 ans sur des opérations similaires. Vous justifiez d’une expérience professionnelle réussie démontrant votre intérêt pour des projets de construction complexes.
+
+Vous vous reconnaissez à travers cette opportunité et souhaitez relever un nouveau challenge, envoyez-nous votre candidature !`,
+    salary:
+      "Rémunération fixe (à négocier selon profil) + RTT + Tickets restaurant + télétravail",
+    jobType: "CDI",
+  });
+  await job02.save();
+
+  const job03 = new Job();
+  Object.assign(job03, {
+    jobDescription: `Vous interviendrez sur les aspects administratifs, techniques et financiers des projets, tout en respectant une bonne gestion de projet et en prenant en compte la qualité, les coûts et les délais. Les opérations portent sur divers secteurs (santé, enseignement, administrations pénitentiaires, équipements sportifs, logements). 
+
+Rattaché(e) au Directeur d’agence, vos missions seront les suivantes :
+
+– Définition du besoin, étude de faisabilité,
+– Programmation fonctionnelle et technique,
+– Conduite d’opération/AMO/AMOT : 
+
+Organisation concours, conception/réalisation, MGP
+Suivi des études (APS, APD, PRO)
+Désignation et suivi des prestataires intellectuels,
+Suivi des travaux,
+Gestion financière du projet,
+Assistance à la phase de réception,
+Suivi de la GPA.`,
+    jobTitle: "CHEF DE PROJET AMO H/F – CONDUITE D’OPÉRATIONS",
+    location: "MARSEILLE",
+    active: true,
+    mission: `Organisation concours, conception/réalisation, MGP
+Suivi des études (APS, APD, PRO)
+Désignation et suivi des prestataires intellectuels,
+Suivi des travaux,
+Gestion financière du projet,
+Assistance à la phase de réception,
+Suivi de la GPA. `,
+    profil: `Ingénieur(e) bâtiment et/ou architecte diplômé(e), master en bâtiment, génie civil ou urbanisme avec une expérience minimale de 8 ans sur des opérations similaires. Vous justifiez d’une expérience professionnelle réussie démontrant votre intérêt pour des projets de construction complexes.
+
+Vous vous reconnaissez à travers cette opportunité et souhaitez relever un nouveau challenge, envoyez-nous votre candidature !`,
+    salary:
+      "Rémunération fixe (à négocier selon profil) + RTT + Tickets restaurant + télétravail",
+    jobType: "CDI",
+  });
+  await job03.save();
 }
 main();

@@ -14,9 +14,12 @@ export default function Details({
 }: Job) {
   return (
     // <div className=" fixed top-0 left-0 w-full h-full bg-slate-600 bg-opacity-90 flex justify-center items-center z-50 overflow-auto">
-    //   <div className="bg-white p-10 md:p-44 rounded-xl absolute z-50 flex flex-col gap-5 mx-1 md:mx-40">
-    <div className="absolute  z-50 bg-slate-500 ">
-      <div className="bg-white md:p-44 rounded-xl flex flex-col gap-5 mx-1 md:mx-40">
+    // <div className="bg-white p-10 md:p-44 rounded-xl absolute z-50 flex flex-col gap-5 mx-1 md:mx-40 topOfDetail">
+    <div className="bg-slate-600  p-2 opacity-100 flex justify-center">
+      <div
+        id="jump"
+        className="bg-white p-10 md:p-44 rounded-xl  z-50 flex flex-col gap-5 mx-1 md:mx-40 topOfDetail"
+      >
         <h1>{jobTitle}</h1>
         <div>
           <p>COOPTENS recherche pour l’un de ses clients, un(e): </p>

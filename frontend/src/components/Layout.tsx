@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Header from "./Header";
 import { ReactNode } from "react";
+import Footer from "./Footer";
 
 export default function Layout({
   children,
@@ -18,7 +19,9 @@ export default function Layout({
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
+
       <main className="main-content ">{children}</main>
+      <Footer></Footer>
     </>
   );
 }
