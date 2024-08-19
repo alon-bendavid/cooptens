@@ -13,14 +13,19 @@ export default function Details({
   mission,
 }: Job) {
   return (
-    // <div className=" fixed top-0 left-0 w-full h-full bg-slate-600 bg-opacity-90 flex justify-center items-center z-50 overflow-auto">
-    // <div className="bg-white p-10 md:p-44 rounded-xl absolute z-50 flex flex-col gap-5 mx-1 md:mx-40 topOfDetail">
-    <div className="bg-slate-600  p-2 opacity-100 flex justify-center">
+    <div className="  fixed top-0 left-0 w-full h-full bg-slate-600 bg-opacity-90 flex justify-center md:items-center z-50 overflow-auto ">
       <div
+        className="bg-white p-10  rounded-xl absolute z-50 flex flex-col gap-5 mx-1 md:mx-14 xl:mx-80 m "
         id="jump"
-        className="bg-white p-10 md:p-44 rounded-xl  z-50 flex flex-col gap-5 mx-1 md:mx-40 topOfDetail"
       >
-        <h1>{jobTitle}</h1>
+        {/* <div
+        className="bg-white p-10 md:p-32 rounded-xl absolute z-50 flex flex-col gap-5 mx-1 md:mx-32 "
+        id="jump"
+      > */}
+
+        {/* <div className="flex justify-center bg-slate-600  p-1 opacity-100 w-full h-full">
+   <div id="jump" className="bg-white p-6 absolute  rounded-xl  z-50  gap-5 "> */}
+        <h1 className="text-center">{jobTitle}</h1>
         <div>
           <p>COOPTENS recherche pour l’un de ses clients, un(e): </p>
           <strong>
@@ -60,10 +65,7 @@ export default function Details({
           </li>
         </ul>
 
-        <button
-          onClick={onClose}
-          className="bg-slate-400 w-28 py-1 rounded-md text-white"
-        >
+        <button onClick={onClose} className="btn btn-primary text-white">
           Close
         </button>
       </div>

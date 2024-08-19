@@ -150,7 +150,8 @@ export default function AddJobAdmin({}: NewJobInput) {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                  // className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                  className="btn btn-accent"
                 >
                   Register Job
                 </button>

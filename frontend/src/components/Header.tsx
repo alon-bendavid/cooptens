@@ -17,7 +17,7 @@ import {
 
 const navigation = [
   { name: "ACCUEIL", href: "/" },
-  { name: "NOTRE EXPERTISE", href: "/about" },
+  { name: "NOTRE EXPERTISE", href: "/expertise" },
   { name: "CANDIDANTS", href: "/candidants" },
   { name: "OPPORTUNITÉS", href: "/opportunities" },
   { name: "CONTACT", href: "/contact" },
@@ -86,7 +86,7 @@ export default function Header() {
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
                 <button
-                  className="btn bg-blue-950  text-white mt-4 w-full"
+                  className="btn btn-primary text-white w-full"
                   onClick={async () => {
                     await logout();
                     client.resetStore();
