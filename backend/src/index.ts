@@ -17,7 +17,6 @@ const { SERVER_PORT: port } = env;
 schemaIsBuilt.then(async (schema) => {
   try {
     await db.initialize();
-    
   } catch (error) {
     console.log(error);
   }

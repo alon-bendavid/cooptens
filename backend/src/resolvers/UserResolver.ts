@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 import env from "../env";
 import { Context } from "../types";
 
-
 @Resolver()
 class UserResolver {
   @Mutation(() => User)
@@ -45,7 +44,6 @@ class UserResolver {
     });
     // return token;
     return token;
-
   }
 
   // @Authorized()
@@ -59,38 +57,30 @@ class UserResolver {
     return User.find();
   }
   // @Authorized()
-// @Query(()=>[User])
-// async users():Promise<User[]>{
-//   return User.find();
-// }
+  // @Query(()=>[User])
+  // async users():Promise<User[]>{
+  //   return User.find();
+  // }
 
-@Authorized()
-@Query(()=> User)
-async profile(@Ctx() ctx: Context) {
-  if (!ctx.currentUser) throw new GraphQLError("you need to be logged in!");
-  return User.findOneOrFail({
-    where: { id: ctx.currentUser.id },
-    
-  });
+  @Authorized()
+  @Query(() => User)
+  async profile(@Ctx() ctx: Context) {
+    if (!ctx.currentUser) throw new GraphQLError("you need to be logged in!");
+    return User.findOneOrFail({
+      where: { id: ctx.currentUser.id },
+    });
+  }
+  // @Mutation(() => String)
+  // async logout(@Ctx() ctx: Context) {
+  //   ctx.res.clearCookie("token");
+  //   return "ok";
+  // }
 
-  
-}
-// @Mutation(() => String)
-// async logout(@Ctx() ctx: Context) {
-//   ctx.res.clearCookie("token");
-//   return "ok";
-// }
-
-@Mutation(()=>String)
-async logout(@Ctx() ctx: Context){
-  ctx.res.clearCookie("token");
-  return "ok";
-}
-
+  @Mutation(() => String)
+  async logout(@Ctx() ctx: Context) {
+    ctx.res.clearCookie("token");
+    return "ok";
+  }
 }
 
 export default UserResolver;
-
-
-
-
