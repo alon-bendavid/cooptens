@@ -5,7 +5,7 @@ on:
   workflow_call:
 
 jobs:
-  integration-tests:
+  test-server:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 20
       - name: Make envfile
-        run: cp .env .env
+        run: cp .env.example .env
       - name: Install deps
         run: npm ci
       - name: Start test DB
