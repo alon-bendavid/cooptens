@@ -37,6 +37,7 @@ export default function Jobs() {
             {jobs.map((j, idx) => {
               return (
                 <Box
+                  key={idx}
                   location={j.location}
                   jobTitle={j.jobTitle}
                   jobDescription={j.jobDescription}

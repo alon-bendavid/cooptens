@@ -22,7 +22,7 @@ export async function clearDB() {
   await db.synchronize();
 }
 
-async function main() {
+export async function main() {
   await db.initialize();
   await clearDB();
 

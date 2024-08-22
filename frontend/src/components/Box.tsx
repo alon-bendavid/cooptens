@@ -43,7 +43,7 @@ export default function Box({
           className={`inset-0 absolute aspect-video border rounded-full -translate-y-1/2 group-hover:-translate-y-1/4 duration-300 bg-gradient-to-b from-${color}-500 to-white dark:from-white dark:to-white blur-2xl opacity-25 dark:opacity-5 dark:group-hover:opacity-10`}
         ></div>
 
-        <div className="relative">
+        <div className="relative" data-testid="box">
           <div className="mt-6 pb-6 rounded-b-[--card-border-radius]">
             <h2 className="text-gray-700 dark:text-gray-300">{jobTitle}</h2>
           </div>
