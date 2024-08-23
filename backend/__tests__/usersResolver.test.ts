@@ -34,7 +34,7 @@ describe("Jobs Resolver", () => {
   "data": {
     "ActiveJobs": [
       {
-        "active": true-,
+        "active": true,
         "id": 1,
         "jobDescription": "test-desc",
         "jobTitle": "test-job",
