@@ -5,11 +5,10 @@ services:
     environment:
       POSTGRES_PASSWORD: ${DB_PASS-postgres}
       PGUSER: ${DB_USER-postgres}
-      POSTGRES_DB: ${POSTGRES_DB-postgres}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 2s
-      timeout: 2s
+      timeout: 5s
       retries: 10
     volumes:
       - prodDB:/var/lib/postgresql/data
@@ -27,14 +26,14 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    image: docky1921/cooptens-back
+    image: scrip/the-good-corner-nov23-back
 
   frontend:
     environment:
       JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY:-changeme}
     stop_grace_period: 0s
     env_file: frontend/.env
-    image: docky1921/cooptens-front
+    image: scrip/the-good-corner-nov23-front
 
   gateway:
     restart: always
