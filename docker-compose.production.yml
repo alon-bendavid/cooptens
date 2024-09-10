@@ -8,7 +8,7 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 2s
-      timeout: 5s
+      timeout: 2s
       retries: 10
     volumes:
       - prodDB:/var/lib/postgresql/data
@@ -26,14 +26,14 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    image: scrip/the-good-corner-nov23-back
+    image: docky1921/cooptens-back
 
   frontend:
     environment:
       JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY:-changeme}
     stop_grace_period: 0s
     env_file: frontend/.env
-    image: scrip/the-good-corner-nov23-front
+    image: docky1921/cooptens-front
 
   gateway:
     restart: always
