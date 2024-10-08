@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: prod-db-1
     image: postgres:15-alpine
     stop_grace_period: 0s
     environment:
@@ -8,21 +9,30 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 2s
-      timeout: 2s
+      timeout: 5s
       retries: 10
     volumes:
       - prodDB:/var/lib/postgresql/data
 
   backend:
     stop_grace_period: 0s
-    env_file: backend/.env
     environment:
+      KVSTORE_HOST: ${KVSTORE_HOST:-kvStore}
       DB_HOST: db
       DB_PASS: ${DB_PASS-postgres}
+      DB_PORT: ${DB_PORT-5432}
       DB_USER: ${DB_USER-postgres}
+      DB_NAME: ${DB_NAME-postgres}
+      SERVER_PORT: ${SERVER_PORT-4001}
       JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY:-changeme}
       NODE_ENV: ${NODE_ENV:-production}
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-changeme}
+      SMTP_HOST: ${SMTP_HOST:-in-v3.mailjet.com}
+      SMTP_PORT: ${SMTP_PORT:-465}
+      SMTP_USER: ${SMTP_USER:-95b8fc1eb0b19737c6eae68409c31952}
+      SMTP_PASS: ${SMTP_PASS:-api-key}
+      EMAIL_FROM: ${EMAIL_FROM:-contact@app.com}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
     depends_on:
       db:
         condition: service_healthy
@@ -32,7 +42,6 @@ services:
     environment:
       JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY:-changeme}
     stop_grace_period: 0s
-    env_file: frontend/.env
     image: docky1921/cooptens-front
 
   gateway:

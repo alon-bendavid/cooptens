@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-const uri = process.env.NEXT_PUBLIC_GRAPHQL_API_URL || "http://localhost:4001";
+const uri = process.env.NEXT_PUBLIC_GRAPHQL_API_URL;
 console.log("Graphql varibale:" + uri);
 const client = new ApolloClient({
   uri: uri || "/graphql",
