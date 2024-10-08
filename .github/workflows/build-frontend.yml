@@ -33,4 +33,3 @@ jobs:
           file: "Dockerfile.production"
           tags: ${{ inputs.image_name }}
           cache-from: type=gha
-          build-args: NEXT_PUBLIC_GRAPHQL_API_URL=""

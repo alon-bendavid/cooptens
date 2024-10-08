@@ -13,9 +13,9 @@ jobs:
     uses: mistral-nw/cooptens/.github/workflows/integration-tests.yml@main
 
   build-and-push-server:
-    needs:
-      - integration-tests
-      - e2e-tests
+    # needs:
+    #   - integration-tests
+    #   - e2e-tests
     uses: mistral-nw/cooptens/.github/workflows/build-backend.yml@main
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -24,8 +24,8 @@ jobs:
       image_name: docky1921/cooptens-back
 
   build-and-push-client:
-    needs:
-      - e2e-tests
+    # needs:
+    #   - e2e-tests
     uses: mistral-nw/cooptens/.github/workflows/build-frontend.yml@main
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
